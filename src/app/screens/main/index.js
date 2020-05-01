@@ -3,6 +3,7 @@ import {Route, Switch, withRouter} from "react-router";
 
 import Header from '../../components/header';
 import SubHeader from '../../components/subHeader';
+import {Spinner} from '../../components/ui';
 import {
   Home,
   HourlyTemp
@@ -12,7 +13,7 @@ export const Main = () => {
   return (
     <div className="main-container">
       <Header/>
-      
+      <Spinner/>
       <Switch>
         <Route path='/' exact>
           <SubHeader withCities/>

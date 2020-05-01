@@ -1,11 +1,18 @@
 import * as actionTypes from "../actionTypes";
+import * as actions from "./index";
+
 import {fetchDailyForecast as fetchDailyForecastAPI} from '../../pages/home/api'
 
 export const fetchDailyForecast = (lat, long, endTime) => {
   return dispatch => {
+    dispatch(actions.startSpinning());
     fetchDailyForecastAPI(lat, long, endTime)
       .then(response => {
+        dispatch(actions.endSpinning());
         dispatch(setDailyForecast(response.data));
+      })
+      .catch(error => {
+        dispatch(actions.endSpinning());
       })
   }
 }

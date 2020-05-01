@@ -11,3 +11,8 @@ export {
   setHourlyForecast,
   resetHourlyForecast
 } from './hourlyTemp';
+
+export {
+  startSpinning,
+  endSpinning
+} from './spinner';
