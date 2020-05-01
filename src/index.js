@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app';
+import { Provider as ReduxProvider } from "react-redux";
+import store from './app/redux/store'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ReduxProvider store={store}>
+      <App />
+    </ReduxProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -7,44 +7,47 @@ import {
   WeatherIcon
 } from '../../../components/ui'
 
-const TodayInfo = () => {
+const TodayInfo = ({cityName, todayData}) => {
+  
+  const {observation_time, temp, weather_code, humidity, wind_direction, wind_speed, baro_pressure, moon_phase, sunrise, sunset} = todayData;
+
   return (
     <WhiteBox>
       <div className="today-info"> 
-        <h2>Tashkent</h2>
-        <p>Today, 30 april</p>
+        <h2>{cityName}</h2>
+        <p>{observation_time.value}</p>
         <div className="current-forecast">
           <div className="row d-flex align-items-center">
             <div className="col-auto pr-0">
               <WeatherIcon 
-                type="cloudy"
+                type={weather_code.value}
                 style={{width: "64px", height: "64px"}}/>
             </div>
             <div className="col-auto pr-0">
-              <h1>+26°</h1>
+              <h1>{'+' + Math.round(temp[1].max.value) + '°'}</h1>
             </div>
             <div className="col-auto pr-0">
-              <h2 className="text-muted">+14°</h2>
+              <h2 className="text-muted">{'+' + Math.round(temp[0].min.value) + '°'}</h2>
             </div>
           </div>
-          <p className="weather-condition">Clear</p>
+          <p className="weather-condition">{weather_code.value}</p>
         </div>
         <hr className="my-2"/>
         <div className="current-forecast-details">
           <div className="row">
             <div className='col-auto pr-0'>
-              <p className="text-muted">Humidity: 60%</p>
-              <p className="text-muted">Wind: W-E, 9 м/c</p>
-              <p className="text-muted">Pressure: 765 mm рт. ст.</p>
+              <p className="text-muted">Humidity: {Math.round(humidity[0].min.value + humidity[1].max.value)}%</p>
+              <p className="text-muted">Wind: {Math.round(wind_direction[0].min.value + wind_direction[1].max.value)}, {Math.round(wind_speed[1].max.value)} м/c</p>
+              <p className="text-muted">Pressure: {Math.round(baro_pressure[0].min.value + baro_pressure[1].max.value)}</p>
             </div>
             <div className='col-auto'>
-              <p className="text-muted">Moon phase: Растущая Луна</p>
-              <p className="text-muted">Sunrise: 05:22</p>
-              <p className="text-muted">Sunset: 19:20</p>
+              <p className="text-muted">Moon phase: {moon_phase.value}</p>
+              <p className="text-muted">Sunrise: {sunrise.value}</p>
+              <p className="text-muted">Sunset: {sunset.value}</p>
             </div>
           </div>
         </div>
-        <hr className="my-3"/>
+        {/* <hr className="my-3"/>
         <div className="current-forecast-day">
           <div className="row d-flex justify-content-center">
             <div className="col-auto text-center">
@@ -72,7 +75,7 @@ const TodayInfo = () => {
               <p className="mt-1">+12°</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </WhiteBox>
   )

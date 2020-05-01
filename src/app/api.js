@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+export const API_KEY = "0nFnr37BtVuzoPastSaHfvY3v5MiN06s";
+
 const httpClient = axios.create({
 	baseURL: "https://api.climacell.co/v3/weather/forecast/",
 	withCredentials: true
@@ -29,4 +31,7 @@ axios.interceptors.request.use((config) => {
   return config
 });
 
-export default axios;
+export const httpGet = (params) => httpClient.request({
+	method: 'get',
+	...params
+});

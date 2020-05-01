@@ -20,9 +20,9 @@ const SubHeader = ({array, cityclickedHandler}) => (
         <div className="col-auto list-item">
           <span><LinkButton name={"Andijan"}/></span>
         </div>
-        <div className="col-auto list-item">
+        {/* <div className="col-auto list-item">
           <span><LinkButton name={"Go Back"}/></span>
-        </div>
+        </div> */}
       </div>
     </div>
   </div>

@@ -3,161 +3,39 @@ import React from 'react'
 import {
   WhiteBox
 } from '../../../screens/main/atoms'
-import {
-  WeatherIcon
-} from '../../../components/ui'
 
-const WeeklyForecast = () => {
+import TableRow from './tableRow'
+
+const WeeklyForecast = ({weeklyData}) => {
+
+  const days = weeklyData.map(elem => {
+    const weekDay = "Week Day";
+    const date = elem.observation_time.value;
+    const weatherCode = elem.weather_code.value;
+    const minTemp = Math.round(elem.temp[0].min.value);
+    const maxTemp = Math.round(elem.temp[1].max.value);
+    return <TableRow 
+      weekDay={weekDay}
+      date={date}
+      weatherCode={weatherCode}
+      minTemp={minTemp}
+      maxTemp={maxTemp}
+    />
+  })
+
   return (
     <WhiteBox>
       <div className="weekly-forecast">
         <h3>Weekly Forecast</h3>
         <table className="weather-table w-100">
-          <tr>
-            <th className="text-muted">Day</th>
-            <th className="text-muted">Temperature</th>
-            <th className="text-muted">Description</th>
-          </tr>
-          <tr>
-            <td>
-              <p className="font-weight-bold">Week day</p>
-              <p>20 May</p>
-            </td>
-            <td>
-              <WeatherIcon 
-                type="cloudy"
-                style={{
-                  width: "40px", 
-                  height: "40px", 
-                  float: "left",
-                  marginRight: "5px"}}/>
-              <p className="forecast-day">+28°</p>
-              <p className="text-muted">+18°</p>
-            </td>
-            <td>
-              Cloudy
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p className="font-weight-bold">Week day</p>
-              <p>20 May</p>
-            </td>
-            <td>
-              <WeatherIcon 
-                type="cloudy"
-                style={{
-                  width: "40px", 
-                  height: "40px", 
-                  float: "left",
-                  marginRight: "5px"}}/>
-              <p className="forecast-day">+28°</p>
-              <p className="text-muted">+18°</p>
-            </td>
-            <td>
-              Cloudy
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p className="font-weight-bold">Week day</p>
-              <p>20 May</p>
-            </td>
-            <td>
-              <WeatherIcon 
-                type="cloudy"
-                style={{
-                  width: "40px", 
-                  height: "40px", 
-                  float: "left",
-                  marginRight: "5px"}}/>
-              <p className="forecast-day">+28°</p>
-              <p className="text-muted">+18°</p>
-            </td>
-            <td>
-              Cloudy
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p className="font-weight-bold">Week day</p>
-              <p>20 May</p>
-            </td>
-            <td>
-              <WeatherIcon 
-                type="cloudy"
-                style={{
-                  width: "40px", 
-                  height: "40px", 
-                  float: "left",
-                  marginRight: "5px"}}/>
-              <p className="forecast-day">+28°</p>
-              <p className="text-muted">+18°</p>
-            </td>
-            <td>
-              Cloudy
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p className="font-weight-bold">Week day</p>
-              <p>20 May</p>
-            </td>
-            <td>
-              <WeatherIcon 
-                type="cloudy"
-                style={{
-                  width: "40px", 
-                  height: "40px", 
-                  float: "left",
-                  marginRight: "5px"}}/>
-              <p className="forecast-day">+28°</p>
-              <p className="text-muted">+18°</p>
-            </td>
-            <td>
-              Cloudy
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p className="font-weight-bold">Week day</p>
-              <p>20 May</p>
-            </td>
-            <td>
-              <WeatherIcon 
-                type="cloudy"
-                style={{
-                  width: "40px", 
-                  height: "40px", 
-                  float: "left",
-                  marginRight: "5px"}}/>
-              <p className="forecast-day">+28°</p>
-              <p className="text-muted">+18°</p>
-            </td>
-            <td>
-              Cloudy
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p className="font-weight-bold red-text">Week day</p>
-              <p>20 May</p>
-            </td>
-            <td>
-              <WeatherIcon 
-                type="cloudy"
-                style={{
-                  width: "40px", 
-                  height: "40px", 
-                  float: "left",
-                  marginRight: "5px"}}/>
-              <p className="forecast-day">+28°</p>
-              <p className="text-muted">+18°</p>
-            </td>
-            <td>
-              Cloudy
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <th className="text-muted">Day</th>
+              <th className="text-muted">Temperature</th>
+              <th className="text-muted">Description</th>
+            </tr>
+            {days}
+          </tbody>
         </table>
       </div>
     </WhiteBox>
