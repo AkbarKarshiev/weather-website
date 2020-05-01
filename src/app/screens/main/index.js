@@ -14,22 +14,23 @@ export const Main = () => {
       <Header/>
       
       <Switch>
-        <Route path='/' render={() => {
-          return (
-            <React.Fragment>
-              <SubHeader withCities/>
-              <Home/>
-            </React.Fragment>
-          )
-          }}/>
-        <Route path='/:day' render={() => {
+        <Route path='/' exact>
+          <SubHeader withCities/>
+          <Home/>
+        </Route> 
+        <Route path='/:date'>
+          <SubHeader withReturnBtn/>
+          <HourlyTemp/>
+        </Route> 
+        
+        {/* <Route path='/' exact render={() => {
           return (
             <React.Fragment>
               <SubHeader withReturnBtn/>
               <HourlyTemp/>
             </React.Fragment>
           )
-        }}/>
+        }}/> */}
       </Switch>
     </div>
   )

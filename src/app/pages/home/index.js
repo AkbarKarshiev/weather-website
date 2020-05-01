@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import moment from 'moment';
 import { connect } from "react-redux";
 import * as actions from '../../redux/actions';
 
@@ -30,7 +29,7 @@ const connector = connect(
 
 const Home = (props) => {
   const {cityName, lat, long, fetchDailyForecast, dailyForecasts, dateTo} = props;
-
+  
   useEffect(() => {
     fetchDailyForecast(lat, long, dateTo);
   }, [cityName])

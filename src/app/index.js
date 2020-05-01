@@ -1,14 +1,15 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import Main from './screens/main';
+import history from '../helpers/history';
 import './index.scss';
 
 function App() {
   return (
     <div className="app">
-      <BrowserRouter>
+      <Router history={history}>
         <Main/>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

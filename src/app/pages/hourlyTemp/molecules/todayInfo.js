@@ -4,12 +4,12 @@ import {
   WhiteBox
 } from '../../../screens/main/atoms'
 
-const TodayInfo = () => {
+const TodayInfo = ({cityName, currentDate}) => {
   return (
     <WhiteBox>
       <div className="today-info"> 
-        <h2>Tashkent</h2>
-        <p className="mb-0">Today, 30 april</p>
+        <h2>{cityName}</h2>
+        <p className="mb-0">{currentDate}</p>
       </div>
     </WhiteBox>
   )

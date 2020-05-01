@@ -46,5 +46,5 @@ export const deriveWindDir = (windDir) => {
 //Function to get the sign of temperature from input
 // Input: 25/-25 (degree) => Output: '+'/'-'
 export const getTempSign = (temp) => {
-  return temp > 0 ? '+' : '-';
+  return temp > 0 ? '+' : temp === 0 ? '' : '-';
 }

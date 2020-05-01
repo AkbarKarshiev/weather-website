@@ -4,10 +4,12 @@ import {
   WhiteBox
 } from '../../../screens/main/atoms'
 import {
-  WeatherIcon
+  WeatherIcon,
+  LinkButton
 } from '../../../components/ui'
 
 import * as utilityFunctions from '../../../../helpers/UtilityFunctions';
+import history from '../../../../helpers/history';
 
 const TodayInfo = ({cityName, todayData}) => {
   
@@ -25,6 +27,10 @@ const TodayInfo = ({cityName, todayData}) => {
   const sunrizeTime = moment(sunrise.value).format('HH:mm');
   const sunrsetTime = moment(sunset.value).format('HH:mm');
   
+  const showHourlyDataHandler = (currentDate) => {
+    history.push('/' + currentDate);
+  }
+
   return (
     <WhiteBox>
       <div className="today-info"> 
@@ -44,7 +50,19 @@ const TodayInfo = ({cityName, todayData}) => {
               <h2 className="text-muted">{tempMin}</h2>
             </div>
           </div>
-          <p className="weather-condition">{weatherDescrb}</p>
+          <div className="row d-flex justify-content-between">
+            <div className="col-auto">
+              <p className="weather-condition">{weatherDescrb}</p>
+            </div>
+            <div className="col-auto">
+              <div className="view-hourly-btn">
+                <LinkButton 
+                  name="View Hourly" 
+                  clicked={() => showHourlyDataHandler(observation_time.value)}/>
+              </div>
+            
+            </div>
+          </div>
         </div>
         <hr className="my-2"/>
         <div className="current-forecast-details">

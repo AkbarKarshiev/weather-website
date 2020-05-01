@@ -8,18 +8,7 @@ import {
 } from '../../../screens/main/atoms'
 ReactFC.fcRoot(FusionCharts, SingleSeriesSpline2D, FusionTheme);
 
-const TempVarChart = (props) => {
-    const setChartData = (props) => {
-        let data = [];
-        for(let i=0; i < props.tempToday.length; i++) {
-            const dataObject = {
-                label: props.tempToday[i].hour,
-                value: props.tempToday[i].temp
-            };
-            data.push(dataObject);
-        }
-        return data;
-    }
+const TempVarChart = ({formattedHourlyArray}) => {
     const chartConfigs = {
         type: 'spline',
         renderAt: "chartContainer",
@@ -50,12 +39,7 @@ const TempVarChart = (props) => {
                 canvasPadding: "20"
             },
             data: [
-              {label: "11:00", value: "+0°C"},
-              {label: "12:00", value: "+5°C"},
-              {label: "13:00", value: "+15°C"},
-              {label: "14:00", value: "+26°C"},
-              {label: "15:00", value: "+15°C"},
-              {label: "16:00", value: "+5°C"},
+              ...formattedHourlyArray
             ]
         }
     }

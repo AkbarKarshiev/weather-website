@@ -29,9 +29,13 @@ const SubHeader = (props) => {
   
   let datatToRender = 'failed';
   
+  const goBackHandler = () => {
+    history.push('/')
+  }
+
   if(withCities) {
-    datatToRender = cityData.map(elem => (
-      <div className="col-auto list-item">
+    datatToRender = cityData.map((elem, index) => (
+      <div className="col-auto list-item" key={index}>
         <span>
           <LinkButton 
             name={elem.name} 
@@ -47,7 +51,7 @@ const SubHeader = (props) => {
         <span>
           <LinkButton 
             name={"Go Back"}
-            cicked={history.push('/')}/>
+            clicked={goBackHandler}/>
         </span>
       </div>
     )
@@ -58,9 +62,6 @@ const SubHeader = (props) => {
       <div className="container">
         <div className="row city-list">
           {datatToRender}
-          {/* <div className="col-auto list-item">
-            <span><LinkButton name={"Go Back"}/></span>
-          </div> */}
         </div>
       </div>
     </div>

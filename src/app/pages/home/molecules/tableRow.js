@@ -1,14 +1,16 @@
 import React from 'react'
+
 import {
-  WeatherIcon
+  WeatherIcon,
+  LinkButton
 } from '../../../components/ui'
 
-const TableRow = ({weekDay, date, weatherCode, weatherDesrb, minTemp, maxTemp}) => {
+const TableRow = ({weekDay, date, weatherCode, weatherDesrb, minTemp, maxTemp, hourlyHandler}) => {
   let weekDayClass = '';
   if(weekDay === "Saturday" || weekDay === "Sunday" || weekDay === "Sat" || weekDay === "Sun") {
     weekDayClass = "font-weight-bold" + " red-text";
   } else weekDayClass = "font-weight-bold";
-
+  
   return (
     <tr>
       <td>
@@ -29,6 +31,15 @@ const TableRow = ({weekDay, date, weatherCode, weatherDesrb, minTemp, maxTemp}) 
       <td>
         {weatherDesrb}
       </td>
+      {hourlyHandler !== undefined &&
+        <td>
+          <div className="view-hourly-btn">
+            <LinkButton 
+              name="go"
+              clicked={hourlyHandler}/>
+          </div>
+        </td>
+      }
     </tr>
   )
 }
