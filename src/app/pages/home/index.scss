@@ -15,7 +15,7 @@
 .weekly-forecast {
     .weather-table {
         font-size: 14px;
-        tr {
+        tr:not(:last-child) {
             border-bottom: 1px solid #ddd;
         }
         th {

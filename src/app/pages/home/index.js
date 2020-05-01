@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react'
+import React, {useEffect} from 'react';
+import moment from 'moment';
 import { connect } from "react-redux";
 import * as actions from '../../redux/actions';
 
@@ -14,6 +15,7 @@ const mapStateToProps = (state) => ({
   cityName: state.home.cityName,
   lat: state.home.lat,
   long: state.home.long,
+  dateTo: state.home.dateTo,
   dailyForecasts: state.home.forecastData
 });
 
@@ -27,15 +29,11 @@ const connector = connect(
 );
 
 const Home = (props) => {
-  const {cityName, lat, long, fetchDailyForecast, dailyForecasts} = props;
+  const {cityName, lat, long, fetchDailyForecast, dailyForecasts, dateTo} = props;
 
   useEffect(() => {
-    if(!dailyForecasts.length) {
-      fetchDailyForecast(lat, long, '2020-05-07');
-    }
-  }, [])
-
-  console.log(dailyForecasts);
+    fetchDailyForecast(lat, long, dateTo);
+  }, [cityName])
   
   return (
     <div className="home">

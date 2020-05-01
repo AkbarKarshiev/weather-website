@@ -1,4 +1,7 @@
 import React from 'react'
+import moment from 'moment'
+
+import * as utilityFunctions from '../../../../helpers/UtilityFunctions';
 
 import {
   WhiteBox
@@ -7,20 +10,23 @@ import {
 import TableRow from './tableRow'
 
 const WeeklyForecast = ({weeklyData}) => {
-
-  const days = weeklyData.map(elem => {
-    const weekDay = "Week Day";
-    const date = elem.observation_time.value;
-    const weatherCode = elem.weather_code.value;
-    const minTemp = Math.round(elem.temp[0].min.value);
-    const maxTemp = Math.round(elem.temp[1].max.value);
-    return <TableRow 
-      weekDay={weekDay}
-      date={date}
-      weatherCode={weatherCode}
-      minTemp={minTemp}
-      maxTemp={maxTemp}
-    />
+  const days = weeklyData.map((elem, index) => {
+    if(index !== 0) {
+      const weekDay = moment(elem.observation_time.value).format('dddd');
+      const date = moment(elem.observation_time.value).format('MMMM D');
+      const weatherCode = elem.weather_code.value;
+      const weatherDesrb = utilityFunctions.convertToTitleCase(weatherCode);
+      const minTemp = utilityFunctions.getTempSign(elem.temp[0].min.value) + Math.round(elem.temp[0].min.value) + '°';
+      const maxTemp = utilityFunctions.getTempSign(elem.temp[1].max.value) + Math.round(elem.temp[1].max.value) + '°';
+      return <TableRow 
+        weekDay={weekDay}
+        date={date}
+        weatherCode={weatherCode}
+        weatherDesrb={weatherDesrb}
+        minTemp={minTemp}
+        maxTemp={maxTemp}
+      />
+    }
   })
 
   return (

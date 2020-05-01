@@ -12,13 +12,25 @@ export const Main = () => {
   return (
     <div className="main-container">
       <Header/>
-      <SubHeader/>
+      
       <Switch>
-        <Route path='/' component={Home}/>
-        <Route path='/:day' render={() =>
-          <HourlyTemp/>}/>
+        <Route path='/' render={() => {
+          return (
+            <React.Fragment>
+              <SubHeader withCities/>
+              <Home/>
+            </React.Fragment>
+          )
+          }}/>
+        <Route path='/:day' render={() => {
+          return (
+            <React.Fragment>
+              <SubHeader withReturnBtn/>
+              <HourlyTemp/>
+            </React.Fragment>
+          )
+        }}/>
       </Switch>
-      {/* <HourlyTemp/> */}
     </div>
   )
 }
